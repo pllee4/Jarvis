@@ -1,0 +1,23 @@
+ 'Up',
+ 'Down'
+'Left',
+'Right',
+'Front',
+'Back'
+'Zero',
+'One',
+'Two',
+'Three',
+'Four',
+'Five',
+'Six',
+'Seven',
+'Eight',
+'Nine',
+'Ten',
+'Go',
+'Stop',
+'True',
+'False',
+'Open',
+'Close'
