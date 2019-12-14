@@ -30,7 +30,7 @@ class SpinnerOptions(SpinnerOption):
             
 class CrowdSourcing(App):
     def build(self):                                                                    
-        layout = GridLayout(cols=5, spacing = 1,size_hint_y=None)               
+        layout = GridLayout(cols = 5, spacing = 1,size_hint_y = None)               
         layout.bind(minimum_height=layout.setter('height'))      
               
         self.age_btn = Spinner(                                              
