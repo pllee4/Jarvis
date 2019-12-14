@@ -250,5 +250,5 @@ class Alert(Popup):
         ok_button.bind(on_press=popup.dismiss)
         popup.open()
         
-if __name__ == '__main__':                                                         ##run the app
+if __name__ == '__main__':                                                         ##run the crowdSourcing app
     CrowdSourcing().run()
