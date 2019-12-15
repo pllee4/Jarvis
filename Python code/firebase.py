@@ -1,29 +1,34 @@
 import firebase_admin
-from firebase_admin import credentials, firestore, storage
+from firebase_admin import credentials, storage
 import urllib.request, json
+import os
 
-# cred=credentials.Certificate(r"C:\Users\Teh\Documents\pythontest\softwareassgnment\crowdsourcingmandarin-firebase-adminsdk-2pnx9-b4a6da0e8a.json")
+folder_to_store = "..\\..\\voices"
 
+class FirebaseInterface ():
+    def __init__ (self):
+        cred = credentials.Certificate(r"crowdsourcingmandarin-firebase-adminsdk-2pnx9-b4a6da0e8a.json")
+        app2 = firebase_admin.initialize_app(cred,  {'storageBucket': r'crowdsourcingmandarin.appspot.com'}, name='storage')
+        self.bucket = storage.bucket(app = app2)
 
-cred = credentials.Certificate(r"crowdsourcingmandarin-firebase-adminsdk-2pnx9-b4a6da0e8a.json")
+    def run(self):
+        blobs = self.bucket.list_blobs()
 
-# cred = credentials.Certificate("https://raw.githubusercontent.com/pllee4/Jarvis/master/firebase/crowdsourcingmandarin-firebase-adminsdk-2pnx9-b4a6da0e8a.json")
+        database = []
+        for blob in blobs:
+            if blob.name != "voices/":
+                path_to_save = folder_to_store + "\\" + str(len(os.listdir(r"..\..\voices")) + 1) + \
+                "_" + blob.metadata.get('Word') + \
+                "_" + blob.metadata.get('Native') + \
+                "_" + blob.metadata.get('Gender') + \
+                "_" + blob.metadata.get('Age') + \
+                ".3gp"
+                blob.download_to_filename(path_to_save)
+                blob.delete()
+                database.append((blob.metadata.get('Age'), blob.metadata.get('Gender'), blob.metadata.get('Native'), blob.metadata.get('Word'), path_to_save ))
 
-app2 = firebase_admin.initialize_app(cred,  {
-    'storageBucket': r'crowdsourcingmandarin.appspot.com'
-}, name='storage')
+        return database
 
-bucket = storage.bucket(app = app2)
-blob = bucket.blob('voices/audiorecord1.3gp')
-# blob.download_to_filename(r"C:\Users\Teh\Documents\pythontest\softwareassgnment\127.3gp")
-
-# blob.download_to_filename(r"DownloadFile\123.gp")
-
-blobs = bucket.list_blobs()
-
-# print(blob.metadata['Native'] for blob.metada in blobs)
-for blob in blobs:
-    # print(blob.metadata)
-    # print(blob.name)
-    print(blob.metadata)
-    
+if __name__ == "__main__":
+    FB = FirebaseInterface()
+    print(FB.run())

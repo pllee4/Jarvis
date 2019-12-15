@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">PROJECT JARVIS</string>
-    <string name="Introduction">The is the interface to crowd-sourcing server.</string>
-    <string name="Start_Message">Please press START to continue.</string>
-    <string name="Collecting_Message">Please fill in the following. The information collected is use for voice classification.</string>
-    <string name="Native_Message">Are you a native chinese speaker?</string>
-    <string name="Next_Message">Please press NEXT to continue.</string>
-</resources>
