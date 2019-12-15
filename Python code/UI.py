@@ -38,25 +38,21 @@ class CrowdSourcing(App):
               
         self.age_btn = Spinner(                                              
                     text = 'Age',
-                    # values = self.getAge(),
                     option_cls = SpinnerOptions,
                     background_color = (1, 1, 50, 0.5 ),
                   )
         self.gender_btn = Spinner(                                           
-                    text = 'Gender',
-                    # values = self.getGender(),       
+                    text = 'Gender',     
                     option_cls = SpinnerOptions,
                     background_color = (1, 1, 50, 0.5 ),
                   )
         self.nativespeaker_btn = Spinner(                                              
                     text = 'NativeSpeaker',
-                    # values = self.getNativeSpeaker(),
                     option_cls = SpinnerOptions,
                     background_color = (1, 1, 50, 0.5 ),
                   )
         self.voiceid_btn = Spinner(
                     text = 'Voice',
-                    # values = self.getVoice(),
                     option_cls = SpinnerOptions,
                     background_color = (1, 1, 50, 0.5 ),
                   )
@@ -153,9 +149,8 @@ class CrowdSourcing(App):
             self.select_btn.background_color = (0.8, 0.9, 50, 1)
             
     def _updateDatabase(self, dt):
-        number = randint(1, 29)
-        db.dataFromFirebase = []
-        # db.dataFromFirebase = [(number, 'Male', 'Yes', number, str(number))]
+        number = randint(1, 29)                                                     ##Sheng can delete this
+        db.dataFromFirebase = [(number, 'Male', 'Yes', number, str(number))]        ##Sheng put yr function here 
         db.insertData(db.dataFromFirebase)
         db.dataFromFirebase = []
         self.age_btn.values = self.getAge()                 
