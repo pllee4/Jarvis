@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "905879313094",
+    "firebase_url": "https://crowdsourcingmandarin.firebaseio.com",
+    "project_id": "crowdsourcingmandarin",
+    "storage_bucket": "crowdsourcingmandarin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905879313094:android:b0866fd35d332ba61b15c7",
+        "android_client_info": {
+          "package_name": "com.example.projectjarvis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905879313094-bjp1ahjbguganoleo4ds3c90l3dlp62v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.projectjarvis",
+            "certificate_hash": "22a12173ef68e965f1a0d88cae7c9998addb594a"
+          }
+        },
+        {
+          "client_id": "905879313094-s0ropmeae9puehvm3cm60jprtmm4bc85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdnzcDbMZs5Uj1dqFC3f90XOq57iURc9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905879313094-s0ropmeae9puehvm3cm60jprtmm4bc85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
