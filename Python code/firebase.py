@@ -2,12 +2,9 @@ import firebase_admin
 from firebase_admin import credentials, firestore, storage
 import urllib.request, json
 
-# cred=credentials.Certificate(r"C:\Users\Teh\Documents\pythontest\softwareassgnment\crowdsourcingmandarin-firebase-adminsdk-2pnx9-b4a6da0e8a.json")
-
 
 cred = credentials.Certificate(r"crowdsourcingmandarin-firebase-adminsdk-2pnx9-b4a6da0e8a.json")
 
-# cred = credentials.Certificate("https://raw.githubusercontent.com/pllee4/Jarvis/master/firebase/crowdsourcingmandarin-firebase-adminsdk-2pnx9-b4a6da0e8a.json")
 
 app2 = firebase_admin.initialize_app(cred,  {
     'storageBucket': r'crowdsourcingmandarin.appspot.com'
