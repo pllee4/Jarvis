@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 import database as db
 
+from random import randint
+
 from kivy.uix.label import Label
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.popup import Popup   
@@ -14,12 +16,13 @@ from kivy.uix.scrollview import ScrollView
 from kivy.core.window import Window
 from kivy.app import App
 from kivy.properties import StringProperty
+from kivy.clock import Clock
+from kivy.config import Config
 
 conn = sqlite3.connect('CrowdSourcingMandarin.db')
 c = conn.cursor()
 db.init()
 
-from kivy.config import Config
 Config.set('graphics', 'resizable', False)
 
 class SpinnerOptions(SpinnerOption):
@@ -30,30 +33,30 @@ class SpinnerOptions(SpinnerOption):
             
 class CrowdSourcing(App):
     def build(self):                                                                    
-        layout = GridLayout(cols = 5, spacing = 1,size_hint_y = None)               
+        layout = GridLayout(cols=5, spacing = 1,size_hint_y=None)               
         layout.bind(minimum_height=layout.setter('height'))      
               
         self.age_btn = Spinner(                                              
                     text = 'Age',
-                    values = self.getAge(),
+                    # values = self.getAge(),
                     option_cls = SpinnerOptions,
                     background_color = (1, 1, 50, 0.5 ),
                   )
         self.gender_btn = Spinner(                                           
                     text = 'Gender',
-                    values = self.getGender(),       
+                    # values = self.getGender(),       
                     option_cls = SpinnerOptions,
                     background_color = (1, 1, 50, 0.5 ),
                   )
         self.nativespeaker_btn = Spinner(                                              
                     text = 'NativeSpeaker',
-                    values = self.getNativeSpeaker(),
+                    # values = self.getNativeSpeaker(),
                     option_cls = SpinnerOptions,
                     background_color = (1, 1, 50, 0.5 ),
                   )
         self.voiceid_btn = Spinner(
                     text = 'Voice',
-                    values = self.getVoice(),
+                    # values = self.getVoice(),
                     option_cls = SpinnerOptions,
                     background_color = (1, 1, 50, 0.5 ),
                   )
@@ -81,11 +84,41 @@ class CrowdSourcing(App):
         # layout.add_widget(self.message)
     
         Window.bind(mouse_pos=self._mousePos)
-                
+
+        Clock.schedule_interval(self._updateDatabase, 0.5)
+
         root = ScrollView(size_hint=(1, None), size=(Window.width, Window.height))  
         root.add_widget(layout)
         return root
-    
+            
+    def _ageSelected(self, instance, value):                                       
+        instance.text = value
+        self.GetAge.insertValue(value)
+        
+    def _genderSelected(self, instance, value):                                    
+        instance.text = value
+        self.GetGender.insertValue(value)
+        
+    def _nativeSpeakerSelected(self, instance, value):                             
+        instance.text = value
+        self.GetNativeSpeaker.insertValue(value)
+        
+    def _voiceIdSelected(self, instance, value):                                             
+        instance.text = value
+        c.execute('''SELECT DISTINCT VoiceId FROM VoiceTable WHERE ((Voice = ?))''', (value,))
+        entry = c.fetchone()
+        try:
+            self.GetVoice.insertValue(entry[0])
+        except:
+            self.GetVoice.insertValue("All Commands")
+
+    def _selected(self, instance):        
+        AgeQuery = Query(self.GetAge, "DownloadLink", "CrowdSourcingMandarin", "All")
+        GenderQuery = Query(self.GetGender, "DownloadLink", "CrowdSourcingMandarin", "All")
+        NativeSpeakerQuery = Query(self.GetNativeSpeaker, "DownloadLink", "CrowdSourcingMandarin", "All")
+        VoiceQuery = Query(self.GetVoice, "DownloadLink", "CrowdSourcingMandarin", "All Commands")        
+        toBeDownloaded(AgeQuery,GenderQuery, NativeSpeakerQuery, VoiceQuery)
+        
     def _mousePos(self, window, pos):
         if (pos[1] > 566 and pos[1] < 600):
             if (pos[0] > 1 and pos[0] < 156):
@@ -119,37 +152,20 @@ class CrowdSourcing(App):
             self.voiceid_btn.background_color = (1, 1, 50, 0.5)                
             self.select_btn.background_color = (0.8, 0.9, 50, 1)
             
-    def _ageSelected(self, instance, value):                                       
-        instance.text = value
-        self.GetAge.insertValue(value)
-        
-    def _genderSelected(self, instance, value):                                    
-        instance.text = value
-        self.GetGender.insertValue(value)
-        
-    def _nativeSpeakerSelected(self, instance, value):                             
-        instance.text = value
-        self.GetNativeSpeaker.insertValue(value)
-        
-    def _voiceIdSelected(self, instance, value):                                             
-        instance.text = value
-        c.execute('''SELECT DISTINCT VoiceId FROM VoiceTable WHERE ((Voice = ?))''', (value,))
-        entry = c.fetchone()
-        try:
-            self.GetVoice.insertValue(entry[0])
-        except:
-            self.GetVoice.insertValue("All Commands")
+    def _updateDatabase(self, dt):
+        number = randint(1, 29)
+        db.dataFromFirebase = []
+        # db.dataFromFirebase = [(number, 'Male', 'Yes', number, str(number))]
+        db.insertData(db.dataFromFirebase)
+        db.dataFromFirebase = []
+        self.age_btn.values = self.getAge()                 
+        self.gender_btn.values = self.getGender() 
+        self.nativespeaker_btn.values = self.getNativeSpeaker()                          
+        self.voiceid_btn.values = self.getVoice()   
 
-    def _selected(self, instance):        
-        AgeQuery = Query(self.GetAge, "DownloadLink", "CrowdSourcingMandarin", "All")
-        GenderQuery = Query(self.GetGender, "DownloadLink", "CrowdSourcingMandarin", "All")
-        NativeSpeakerQuery = Query(self.GetNativeSpeaker, "DownloadLink", "CrowdSourcingMandarin", "All")
-        VoiceQuery = Query(self.GetVoice, "DownloadLink", "CrowdSourcingMandarin", "All Commands")        
-        toBeDownloaded(AgeQuery,GenderQuery, NativeSpeakerQuery, VoiceQuery)
-        
     def getAge(self):
         column = "Age"
-        c.execute("SELECT DISTINCT " + column + " FROM CrowdSourcingMandarin")
+        c.execute("SELECT DISTINCT " + column + " FROM CrowdSourcingMandarin ORDER BY " + column + " ASC")
         self.GetAge = Fetch(c.fetchall(), column, "All")
         return self.GetAge.value()
 
@@ -250,5 +266,5 @@ class Alert(Popup):
         ok_button.bind(on_press=popup.dismiss)
         popup.open()
         
-if __name__ == '__main__':                                                         ##run the crowdSourcing app
+if __name__ == '__main__':                                                         ##run the app
     CrowdSourcing().run()
