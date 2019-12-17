@@ -1,3 +1,10 @@
+"""
+
+This file constain the list of voices that will be recorded.
+
+"""
+
+
 voice = [
     
 'Backward',                 ##Direction

@@ -1,3 +1,4 @@
+
 import kivy
 import sqlite3
 import numpy as np
@@ -31,6 +32,11 @@ Config.set('graphics', 'resizable', False)
 
 path_to_saved = "..\\..\\"
 
+"""
+
+This 
+
+"""
 class SpinnerOptions(SpinnerOption):
 
     def __init__(self, **kwargs):

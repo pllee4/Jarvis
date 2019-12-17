@@ -6,13 +6,7 @@ conn = sqlite3.connect('CrowdSourcingMandarin.db')
 conn.execute("PRAGMA foreign_keys = 1")
 c = conn.cursor()
 
-dataFromFirebase = [
-    # (22, 'Male', 'Yes', 2, 'Path1'),
-    # (21, 'Female', 'No', 4, 'Path2'),
-    # (20, 'Male', 'Yes', 3, 'Path3'),
-    # (25, 'Male', 'Yes', 7, 'Path5'),
-    # (25, 'Female', 'Yes', 7, 'Path4')
-    ]
+dataFromFirebase = [ ]
     
 
 def returnAttributes():
