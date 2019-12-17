@@ -67,7 +67,6 @@ Some data in database:
 
 # User interface
 
-![User interface]
 
 
 # Website where Django server is based
