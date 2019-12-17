@@ -3,6 +3,7 @@ import sqlite3
 import numpy as np
 import pandas as pd
 import database as db
+import firebase_interface as fi
 
 from random import randint
 
@@ -65,6 +66,8 @@ class CrowdSourcing(App):
         self.voiceid_btn.bind(text = self._voiceIdSelected)                    
         
         self.select_btn.bind(on_release = self._selected) 
+
+        self.firebae_inteface = fi.FirebaseInterface()
         
         # self.message = Label(text = "Welcome", pos = (2900,900), font_size = '50sp', padding = (1000, 600))
         # self.message.bind(text = self._showMessage)
@@ -81,7 +84,7 @@ class CrowdSourcing(App):
     
         Window.bind(mouse_pos=self._mousePos)
 
-        Clock.schedule_interval(self._updateDatabase, 0.5)
+        Clock.schedule_interval(self._updateDatabase, 2.0)
 
         root = ScrollView(size_hint=(1, None), size=(Window.width, Window.height))  
         root.add_widget(layout)
@@ -149,8 +152,9 @@ class CrowdSourcing(App):
             self.select_btn.background_color = (0.8, 0.9, 50, 1)
             
     def _updateDatabase(self, dt):
-        number = randint(1, 29)                                                     ##Sheng can delete this
-        db.dataFromFirebase = [(number, 'Male', 'Yes', number, str(number))]        ##Sheng put yr function here 
+        #number = randint(1, 29)                                                     ##Sheng can delete this
+        #db.dataFromFirebase = [(number, 'Male', 'Yes', number, str(number))]        ##Sheng put yr function here 
+        db.dataFromFirebase = self.firebae_inteface.run()
         db.insertData(db.dataFromFirebase)
         db.dataFromFirebase = []
         self.age_btn.values = self.getAge()                 
