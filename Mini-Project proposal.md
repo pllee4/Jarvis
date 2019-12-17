@@ -67,7 +67,7 @@ Some data in database:
 
 # User interface
 
-![User interface](https://user-images.githubusercontent.com/42335542/67346779-6a4cb680-f572-11e9-9d82-7866299d6507.jpg)
+![User interface]
 
 
 # Website where Django server is based
