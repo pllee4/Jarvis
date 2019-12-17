@@ -3,7 +3,6 @@ import sqlite3
 import numpy as np
 import pandas as pd
 import database as db
-import firebase_interface as fi
 
 from random import randint
 
@@ -19,6 +18,8 @@ from kivy.app import App
 from kivy.properties import StringProperty
 from kivy.clock import Clock
 from kivy.config import Config
+
+import firebase_interface as fi
 
 conn = sqlite3.connect('CrowdSourcingMandarin.db')
 c = conn.cursor()
@@ -66,8 +67,18 @@ class CrowdSourcing(App):
         self.voiceid_btn.bind(text = self._voiceIdSelected)                    
         
         self.select_btn.bind(on_release = self._selected) 
-
-        self.firebae_inteface = fi.FirebaseInterface()
+        
+        self.GetAge = Fetch("Age", "All")
+        self.GetGender = Fetch("Gender",  "All")
+        self.GetNativeSpeaker = Fetch("NativeSpeaker", "All")
+        self.GetVoice = Fetch("VoiceId", "All Commands")
+        
+        self.age_btn.values = self.getAge()                 
+        self.gender_btn.values = self.getGender() 
+        self.nativespeaker_btn.values = self.getNativeSpeaker()                          
+        self.voiceid_btn.values = self.getVoice()  
+        
+        self.firebase_inteface = fi.FirebaseInterface()
         
         # self.message = Label(text = "Welcome", pos = (2900,900), font_size = '50sp', padding = (1000, 600))
         # self.message.bind(text = self._showMessage)
@@ -84,7 +95,7 @@ class CrowdSourcing(App):
     
         Window.bind(mouse_pos=self._mousePos)
 
-        Clock.schedule_interval(self._updateDatabase, 2.0)
+        Clock.schedule_interval(self._updateDatabase, 5)
 
         root = ScrollView(size_hint=(1, None), size=(Window.width, Window.height))  
         root.add_widget(layout)
@@ -115,7 +126,7 @@ class CrowdSourcing(App):
         AgeQuery = Query(self.GetAge, "DownloadLink", "CrowdSourcingMandarin", "All")
         GenderQuery = Query(self.GetGender, "DownloadLink", "CrowdSourcingMandarin", "All")
         NativeSpeakerQuery = Query(self.GetNativeSpeaker, "DownloadLink", "CrowdSourcingMandarin", "All")
-        VoiceQuery = Query(self.GetVoice, "DownloadLink", "CrowdSourcingMandarin", "All Commands")        
+        VoiceQuery = Query(self.GetVoice, "DownloadLink", "CrowdSourcingMandarin", "All Commands")   
         toBeDownloaded(AgeQuery,GenderQuery, NativeSpeakerQuery, VoiceQuery)
         
     def _mousePos(self, window, pos):
@@ -152,9 +163,9 @@ class CrowdSourcing(App):
             self.select_btn.background_color = (0.8, 0.9, 50, 1)
             
     def _updateDatabase(self, dt):
-        #number = randint(1, 29)                                                     ##Sheng can delete this
-        #db.dataFromFirebase = [(number, 'Male', 'Yes', number, str(number))]        ##Sheng put yr function here 
-        db.dataFromFirebase = self.firebae_inteface.run()
+        # number = randint(1, 29)                                                     ##Sheng can delete this
+        # db.dataFromFirebase = [(number, 'Male', 'Yes', number, str(number))]        ##Sheng put yr function here 
+        db.dataFromFirebase = self.firebase_inteface.run()
         db.insertData(db.dataFromFirebase)
         db.dataFromFirebase = []
         self.age_btn.values = self.getAge()                 
@@ -165,33 +176,37 @@ class CrowdSourcing(App):
     def getAge(self):
         column = "Age"
         c.execute("SELECT DISTINCT " + column + " FROM CrowdSourcingMandarin ORDER BY " + column + " ASC")
-        self.GetAge = Fetch(c.fetchall(), column, "All")
+        self.GetAge.insertData(c.fetchall())
         return self.GetAge.value()
 
     def getGender(self):
         column = "Gender"
         c.execute("SELECT DISTINCT " + column + " FROM CrowdSourcingMandarin")
-        self.GetGender = Fetch(c.fetchall(), column,  "All")
+        self.GetGender.insertData(c.fetchall())
         return self.GetGender.value()
 
     def getNativeSpeaker(self):
         column = "NativeSpeaker"
         c.execute("SELECT DISTINCT " + column + " FROM CrowdSourcingMandarin")        
-        self.GetNativeSpeaker = Fetch(c.fetchall(), column, "All")
+        self.GetNativeSpeaker.insertData(c.fetchall())
         return self.GetNativeSpeaker.value()
     
     def getVoice(self):
         column = "VoiceId"
         c.execute("SELECT DISTINCT Voice FROM VoiceTable WHERE VoiceId IN (SELECT DISTINCT " + column + " FROM CrowdSourcingMandarin)")        
-        self.GetVoice = Fetch(c.fetchall(), column, "All Commands")
+        self.GetVoice.insertData(c.fetchall())
         return self.GetVoice.value()
 
 class Fetch():
     
-    def __init__(self, data, column, extraData = None):
-        self.data = data
+    def __init__(self, column, extraData = None):
         self.extraData = extraData
         self.column = column
+        self.data = []
+        self.valueSelected = ''
+    
+    def insertData(self, data):
+        self.data = data
     
     def value(self):
         returnData = []
@@ -203,19 +218,19 @@ class Fetch():
     
     def getColumn(self):
         return str(self.column)
-    
+
     def getValue(self):
-        return str(self.value)
+        return str(self.valueSelected)
     
     def insertValue(self, value):
-        self.value = value
+        self.valueSelected = value
         
 
 class Query():
     
-    def __init__(self, object, select, table, condition):
-        self.column = object.getColumn()
-        self.value = object.getValue()
+    def __init__(self, obj, select, table, condition):
+        self.column = obj.getColumn()
+        self.value = obj.getValue()
         self.query = "SELECT " + select + " FROM " + table 
         if self.value != condition:
             self.query += " WHERE " + self.column + " = '" + self.value + "'"
@@ -230,15 +245,16 @@ def toBeDownloaded(*argv):
     selection_query = ''
     value = []
     header = ["Age", "Gender", "NativeSpeaker", "Command"]
+    
     for arg in argv:
         selection_query += arg.getQuery() + " INTERSECT "
         value.append(arg.getValue())
-    selection_query = selection_query[:-len(" INTERSECT ")]
     
+    selection_query = selection_query[:-len(" INTERSECT ")]
     parse_data = dict(zip(header, value))
     parse_data.update({'Path':[]})
     c.execute(selection_query)
-    parse_data['Path'] = c.fetchall()    
+    parse_data['Path'] = c.fetchall()
     if len(parse_data['Path']) < 1:
         Alert(title='Oops!', text='Invalid inputs')
     else:
