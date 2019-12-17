@@ -3,6 +3,8 @@ import sqlite3
 import numpy as np
 import pandas as pd
 import database as db
+import os
+import shutil
 
 from random import randint
 
@@ -26,6 +28,8 @@ c = conn.cursor()
 db.init()
 
 Config.set('graphics', 'resizable', False)
+
+path_to_saved = "..\\..\\"
 
 class SpinnerOptions(SpinnerOption):
 
@@ -163,8 +167,6 @@ class CrowdSourcing(App):
             self.select_btn.background_color = (0.8, 0.9, 50, 1)
             
     def _updateDatabase(self, dt):
-        # number = randint(1, 29)                                                     ##Sheng can delete this
-        # db.dataFromFirebase = [(number, 'Male', 'Yes', number, str(number))]        ##Sheng put yr function here 
         db.dataFromFirebase = self.firebase_inteface.run()
         db.insertData(db.dataFromFirebase)
         db.dataFromFirebase = []
@@ -258,7 +260,12 @@ def toBeDownloaded(*argv):
     if len(parse_data['Path']) < 1:
         Alert(title='Oops!', text='Invalid inputs')
     else:
-        print(parse_data)                                       ##@Sheng Enter your function here 
+        dest = path_to_saved + parse_data["Age"] + "_" + parse_data["Gender"] + "_" + \
+            parse_data["NativeSpeaker"] + "_" + parse_data["Command"]
+        if (not os.path.exists(dest)):  
+            os.makedirs(dest)
+        for path in parse_data['Path']:
+	        shutil.copyfile(path[0], dest + "\\" + path[0].split("\\")[-1]) 
     
 class Alert(Popup):
 

@@ -33,4 +33,10 @@ voice = [
 'Cat',
 'Dog',
 
+'Learn',
+'Happy',
+'See',
+'Wow',
+
+
 ]
