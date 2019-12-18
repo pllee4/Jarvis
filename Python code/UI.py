@@ -121,13 +121,7 @@ class CrowdSourcing(App):
         root.add_widget(layout)
         return root
             
-    def _ageSelected(self, instance, value):  
-        """
-        The class is written to for creating CrowdSourcing App
-        
-        Parameters:
-        App(Inheritance of class): To inherit the class of App from kivy.app
-        """                                      
+    def _ageSelected(self, instance, value):                                     
         instance.text = value
         self.GetAge.insertValue(value)
         
