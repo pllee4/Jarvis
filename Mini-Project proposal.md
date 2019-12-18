@@ -49,9 +49,10 @@ Database structure:
 ![final database1](https://user-images.githubusercontent.com/42335542/71088923-9f742e80-21da-11ea-9596-bbaded0956c5.png)
 
 Some data in VoiceTable:
+![final database3](https://user-images.githubusercontent.com/42335542/71089023-e5c98d80-21da-11ea-84ca-46f32dc16ac2.png)
 
 Some data in CrowdSourcingMandarin:
-                                              
+![final database2](https://user-images.githubusercontent.com/42335542/71089026-e82be780-21da-11ea-8a21-d1086dc92bef.png)                                           
 
 # User interface
 
