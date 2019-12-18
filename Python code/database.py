@@ -81,6 +81,3 @@ def init():
     MandarinTable = VoiceTable()
     MandarinTable.insertToVoiceTable(voice.voice)
     createTable()
-    # insertData(dataFromFirebase)    
-    # c.close()
-    # conn.close()
