@@ -33,7 +33,7 @@ Members:
 
 # Entity-relationship Diagram
 
-![erd](https://user-images.githubusercontent.com/42335542/67283801-ed382780-f506-11e9-9f85-fec9bdd6e55c.PNG)
+![erd](https://github.com/kaishengchoi/fluffy-palm-tree/blob/master/ERD.PNG)
 
 
 # Database tables
