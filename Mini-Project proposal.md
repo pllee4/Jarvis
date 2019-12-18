@@ -38,11 +38,11 @@ Members:
 
 # Database tables
 
-* The messaging protocol we use is MQTT (machine-to-machine) connectivity protocol.
-* The broker that we choose is cloudmqtt, it requires username and password for authentification
-* The client would publish the data through the broker
-* Raspberry Pi would subscribe to the topic to retrieve the data and store in local database using sqlite3
-* The table created in database would be consisted of gender, age, command and voice.
+* There are two tables created in database namely CrowdSourcingMandarin and VoiceTable
+* VoiceTable consisted of VoiceId (Integer primary key) and Voice (text unique)
+* CrowdSourcingMandarin consisted of ID (Integer primary key), Age (Integer), Gender (Text)
+  , NativeSpeaker (Text), VoiceId (Integer), DownloadLink (Text) with Foreign key VoiceId References 
+  to VoiceId in VoiceTable
 
 Database structure: 
 
