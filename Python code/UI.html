@@ -68,14 +68,10 @@
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt><a href="#Alert">Alert</a>(title,&nbsp;text)<br>
 &nbsp;<br>
-<a href="kivy.uix.popup.html#Popup">Popup</a>&nbsp;class.&nbsp;See&nbsp;module&nbsp;documentation&nbsp;for&nbsp;more&nbsp;information.<br>
+The&nbsp;class&nbsp;is&nbsp;written&nbsp;to&nbsp;create&nbsp;alert&nbsp;when&nbsp;the&nbsp;input&nbsp;is&nbsp;invalid<br>
 &nbsp;<br>
-:Events:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;`on_open`:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fired&nbsp;when&nbsp;the&nbsp;<a href="kivy.uix.popup.html#Popup">Popup</a>&nbsp;is&nbsp;opened.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;`on_dismiss`:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fired&nbsp;when&nbsp;the&nbsp;<a href="kivy.uix.popup.html#Popup">Popup</a>&nbsp;is&nbsp;closed.&nbsp;If&nbsp;the&nbsp;callback&nbsp;returns&nbsp;True,&nbsp;the<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismiss&nbsp;will&nbsp;be&nbsp;canceled.<br>&nbsp;</tt></td></tr>
+Parameters:<br>
+PopUp(Inheritance&nbsp;of&nbsp;class):&nbsp;To&nbsp;inherit&nbsp;the&nbsp;class&nbsp;of&nbsp;PopUp&nbsp;from&nbsp;kivy.uix.popup<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="UI.html#Alert">Alert</a></dd>
@@ -91,7 +87,11 @@
 </dl>
 <hr>
 Methods defined here:<br>
-<dl><dt><a name="Alert-__init__"><strong>__init__</strong></a>(self, title, text)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+<dl><dt><a name="Alert-__init__"><strong>__init__</strong></a>(self, title, text)</dt><dd><tt>This&nbsp;method&nbsp;initialize&nbsp;the&nbsp;instances&nbsp;of&nbsp;<a href="#Alert">Alert</a>.<br>
+&nbsp;<br>
+Parameters:<br>
+<a href="#Alert-title">title</a>(string):&nbsp;title&nbsp;of&nbsp;popup&nbsp;to&nbsp;be&nbsp;shown<br>
+text(string):&nbsp;text&nbsp;of&nbsp;popup&nbsp;to&nbsp;be&nbsp;shown</tt></dd></dl>
 
 <hr>
 Methods inherited from <a href="kivy.uix.popup.html#Popup">kivy.uix.popup.Popup</a>:<br>
@@ -2351,26 +2351,10 @@ Data descriptors inherited from <a href="kivy._event.html#ObjectWithUid">kivy._e
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt><a href="#CrowdSourcing">CrowdSourcing</a>(**kwargs)<br>
 &nbsp;<br>
-Application&nbsp;class,&nbsp;see&nbsp;module&nbsp;documentation&nbsp;for&nbsp;more&nbsp;information.<br>
+The&nbsp;class&nbsp;is&nbsp;written&nbsp;to&nbsp;create&nbsp;<a href="#CrowdSourcing">CrowdSourcing</a>&nbsp;<a href="kivy.app.html#App">App</a><br>
 &nbsp;<br>
-:Events:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;`on_start`:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fired&nbsp;when&nbsp;the&nbsp;application&nbsp;is&nbsp;being&nbsp;started&nbsp;(before&nbsp;the<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:func:`~kivy.base.runTouchApp`&nbsp;call.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;`on_stop`:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fired&nbsp;when&nbsp;the&nbsp;application&nbsp;stops.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;`on_pause`:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fired&nbsp;when&nbsp;the&nbsp;application&nbsp;is&nbsp;paused&nbsp;by&nbsp;the&nbsp;OS.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;`on_resume`:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fired&nbsp;when&nbsp;the&nbsp;application&nbsp;is&nbsp;resumed&nbsp;from&nbsp;pause&nbsp;by&nbsp;the&nbsp;OS.&nbsp;Beware:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you&nbsp;have&nbsp;no&nbsp;guarantee&nbsp;that&nbsp;this&nbsp;event&nbsp;will&nbsp;be&nbsp;fired&nbsp;after&nbsp;the<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`on_pause`&nbsp;event&nbsp;has&nbsp;been&nbsp;called.<br>
-&nbsp;<br>
-..&nbsp;versionchanged::&nbsp;1.7.0<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Parameter&nbsp;`kv_file`&nbsp;added.<br>
-&nbsp;<br>
-..&nbsp;versionchanged::&nbsp;1.8.0<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Parameters&nbsp;`kv_file`&nbsp;and&nbsp;`kv_directory`&nbsp;are&nbsp;now&nbsp;properties&nbsp;of&nbsp;<a href="kivy.app.html#App">App</a>.<br>&nbsp;</tt></td></tr>
+Parameters:<br>
+<a href="kivy.app.html#App">App</a>(Inheritance&nbsp;of&nbsp;class):&nbsp;To&nbsp;inherit&nbsp;the&nbsp;class&nbsp;of&nbsp;<a href="kivy.app.html#App">App</a>&nbsp;from&nbsp;kivy.app<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="UI.html#CrowdSourcing">CrowdSourcing</a></dd>
@@ -2381,21 +2365,30 @@ Application&nbsp;class,&nbsp;see&nbsp;module&nbsp;documentation&nbsp;for&nbsp;mo
 </dl>
 <hr>
 Methods defined here:<br>
-<dl><dt><a name="CrowdSourcing-build"><strong>build</strong></a>(self)</dt><dd><tt>Initializes&nbsp;the&nbsp;application;&nbsp;it&nbsp;will&nbsp;be&nbsp;called&nbsp;only&nbsp;once.<br>
-If&nbsp;this&nbsp;method&nbsp;returns&nbsp;a&nbsp;widget&nbsp;(tree),&nbsp;it&nbsp;will&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;root<br>
-widget&nbsp;and&nbsp;added&nbsp;to&nbsp;the&nbsp;window.<br>
+<dl><dt><a name="CrowdSourcing-build"><strong>build</strong></a>(self)</dt><dd><tt>This&nbsp;method&nbsp;builds&nbsp;the&nbsp;application&nbsp;with&nbsp;4&nbsp;spinners&nbsp;and&nbsp;one&nbsp;select&nbsp;button<br>
 &nbsp;<br>
-:return:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;None&nbsp;or&nbsp;a&nbsp;root&nbsp;:class:`~kivy.uix.widget.Widget`&nbsp;instance<br>
-&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;no&nbsp;self.<strong>root</strong>&nbsp;exists.</tt></dd></dl>
+Returns:<br>
+<a href="builtins.html#object">object</a>:&nbsp;the&nbsp;instance&nbsp;of&nbsp;ScrollView</tt></dd></dl>
 
-<dl><dt><a name="CrowdSourcing-getAge"><strong>getAge</strong></a>(self)</dt></dl>
+<dl><dt><a name="CrowdSourcing-getAge"><strong>getAge</strong></a>(self)</dt><dd><tt>The&nbsp;method&nbsp;is&nbsp;to&nbsp;get&nbsp;the&nbsp;value&nbsp;for&nbsp;age&nbsp;from&nbsp;database&nbsp;that&nbsp;would&nbsp;be&nbsp;shown&nbsp;for&nbsp;options&nbsp;of&nbsp;Spinner<br>
+&nbsp;<br>
+Returns:<br>
+list:&nbsp;The&nbsp;value&nbsp;of&nbsp;age</tt></dd></dl>
 
-<dl><dt><a name="CrowdSourcing-getGender"><strong>getGender</strong></a>(self)</dt></dl>
+<dl><dt><a name="CrowdSourcing-getGender"><strong>getGender</strong></a>(self)</dt><dd><tt>The&nbsp;method&nbsp;is&nbsp;to&nbsp;get&nbsp;the&nbsp;value&nbsp;for&nbsp;gender&nbsp;from&nbsp;database&nbsp;that&nbsp;would&nbsp;be&nbsp;shown&nbsp;for&nbsp;options&nbsp;of&nbsp;Spinner<br>
+&nbsp;<br>
+Returns:<br>
+list:&nbsp;The&nbsp;value&nbsp;of&nbsp;gender</tt></dd></dl>
 
-<dl><dt><a name="CrowdSourcing-getNativeSpeaker"><strong>getNativeSpeaker</strong></a>(self)</dt></dl>
+<dl><dt><a name="CrowdSourcing-getNativeSpeaker"><strong>getNativeSpeaker</strong></a>(self)</dt><dd><tt>The&nbsp;method&nbsp;is&nbsp;to&nbsp;get&nbsp;the&nbsp;value&nbsp;for&nbsp;nativeSpeaker&nbsp;from&nbsp;database&nbsp;that&nbsp;would&nbsp;be&nbsp;shown&nbsp;for&nbsp;options&nbsp;of&nbsp;Spinner<br>
+&nbsp;<br>
+Returns:<br>
+list:&nbsp;The&nbsp;value&nbsp;of&nbsp;nativeSpeaker</tt></dd></dl>
 
-<dl><dt><a name="CrowdSourcing-getVoice"><strong>getVoice</strong></a>(self)</dt></dl>
+<dl><dt><a name="CrowdSourcing-getVoice"><strong>getVoice</strong></a>(self)</dt><dd><tt>The&nbsp;method&nbsp;is&nbsp;to&nbsp;get&nbsp;the&nbsp;value&nbsp;for&nbsp;voice&nbsp;from&nbsp;database&nbsp;that&nbsp;would&nbsp;be&nbsp;shown&nbsp;for&nbsp;options&nbsp;of&nbsp;Spinner<br>
+&nbsp;<br>
+Returns:<br>
+list:&nbsp;The&nbsp;value&nbsp;of&nbsp;voice</tt></dd></dl>
 
 <hr>
 Methods inherited from <a href="kivy.app.html#App">kivy.app.App</a>:<br>
@@ -3251,20 +3244,39 @@ Data descriptors inherited from <a href="kivy._event.html#ObjectWithUid">kivy._e
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt><a href="#Fetch">Fetch</a>(column,&nbsp;extraData=None)<br>
 &nbsp;<br>
-<br>&nbsp;</tt></td></tr>
+The&nbsp;class&nbsp;is&nbsp;written&nbsp;to&nbsp;fetch&nbsp;the&nbsp;information&nbsp;easily<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="Fetch-__init__"><strong>__init__</strong></a>(self, column, extraData=None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+<dl><dt><a name="Fetch-__init__"><strong>__init__</strong></a>(self, column, extraData=None)</dt><dd><tt>This&nbsp;method&nbsp;initialize&nbsp;the&nbsp;instances&nbsp;of&nbsp;<a href="#Fetch">Fetch</a>.<br>
+&nbsp;<br>
+Parameters:<br>
+column(string):&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;column<br>
+extraData(string):&nbsp;the&nbsp;extraData&nbsp;that&nbsp;is&nbsp;not&nbsp;from&nbsp;firebase</tt></dd></dl>
 
-<dl><dt><a name="Fetch-getColumn"><strong>getColumn</strong></a>(self)</dt></dl>
+<dl><dt><a name="Fetch-getColumn"><strong>getColumn</strong></a>(self)</dt><dd><tt>This&nbsp;method&nbsp;is&nbsp;to&nbsp;return&nbsp;the&nbsp;value&nbsp;of&nbsp;column<br>
+&nbsp;<br>
+Return:<br>
+string:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;column</tt></dd></dl>
 
-<dl><dt><a name="Fetch-getValue"><strong>getValue</strong></a>(self)</dt></dl>
+<dl><dt><a name="Fetch-getValue"><strong>getValue</strong></a>(self)</dt><dd><tt>This&nbsp;method&nbsp;is&nbsp;to&nbsp;return&nbsp;the&nbsp;value&nbsp;of&nbsp;self.<strong>valueSelected</strong><br>
+&nbsp;<br>
+Return:<br>
+string:&nbsp;the&nbsp;selected&nbsp;value</tt></dd></dl>
 
-<dl><dt><a name="Fetch-insertData"><strong>insertData</strong></a>(self, data)</dt></dl>
+<dl><dt><a name="Fetch-insertData"><strong>insertData</strong></a>(self, data)</dt><dd><tt>This&nbsp;method&nbsp;insert&nbsp;data&nbsp;into&nbsp;the&nbsp;self.<strong>data</strong><br>
+&nbsp;<br>
+Parameters:<br>
+data(list&nbsp;or&nbsp;string):&nbsp;the&nbsp;data&nbsp;selected&nbsp;from&nbsp;Spinner&nbsp;Options</tt></dd></dl>
 
-<dl><dt><a name="Fetch-insertValue"><strong>insertValue</strong></a>(self, value)</dt></dl>
+<dl><dt><a name="Fetch-insertValue"><strong>insertValue</strong></a>(self, value)</dt><dd><tt>This&nbsp;method&nbsp;is&nbsp;to&nbsp;insert&nbsp;value&nbsp;into&nbsp;self.<strong>valueSelected</strong><br>
+&nbsp;<br>
+Parameters:<br>
+<a href="#Fetch-value">value</a>(string):&nbsp;the&nbsp;value&nbsp;that&nbsp;is&nbsp;selected</tt></dd></dl>
 
-<dl><dt><a name="Fetch-value"><strong>value</strong></a>(self)</dt></dl>
+<dl><dt><a name="Fetch-value"><strong>value</strong></a>(self)</dt><dd><tt>This&nbsp;method&nbsp;is&nbsp;to&nbsp;return&nbsp;the&nbsp;value&nbsp;for&nbsp;Spinner&nbsp;Options<br>
+&nbsp;<br>
+Return:<br>
+list:&nbsp;the&nbsp;list&nbsp;of&nbsp;data&nbsp;to&nbsp;be&nbsp;displayed&nbsp;for&nbsp;Spinner&nbsp;Options</tt></dd></dl>
 
 <hr>
 Data descriptors defined here:<br>
@@ -3283,14 +3295,26 @@ Data descriptors defined here:<br>
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt><a href="#Query">Query</a>(obj,&nbsp;select,&nbsp;table,&nbsp;condition)<br>
 &nbsp;<br>
-<br>&nbsp;</tt></td></tr>
+The&nbsp;class&nbsp;is&nbsp;written&nbsp;to&nbsp;handle&nbsp;the&nbsp;query&nbsp;from&nbsp;databse<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="Query-__init__"><strong>__init__</strong></a>(self, obj, select, table, condition)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+<dl><dt><a name="Query-__init__"><strong>__init__</strong></a>(self, obj, select, table, condition)</dt><dd><tt>This&nbsp;method&nbsp;initialize&nbsp;the&nbsp;instances&nbsp;of&nbsp;<a href="#Fetch">Fetch</a>.<br>
+&nbsp;<br>
+Parameters:<br>
+obj(<a href="builtins.html#object">object</a>):&nbsp;the&nbsp;<a href="builtins.html#object">object</a>&nbsp;passed<br>
+select(string):&nbsp;the&nbsp;information&nbsp;to&nbsp;be&nbsp;selected&nbsp;from&nbsp;table<br>
+table(string):&nbsp;the&nbsp;name&nbsp;of&nbsp;table&nbsp;in&nbsp;database<br>
+condition(string):&nbsp;the&nbsp;condition&nbsp;whether&nbsp;is&nbsp;All&nbsp;or&nbsp;All&nbsp;Commands</tt></dd></dl>
 
-<dl><dt><a name="Query-getQuery"><strong>getQuery</strong></a>(self)</dt></dl>
+<dl><dt><a name="Query-getQuery"><strong>getQuery</strong></a>(self)</dt><dd><tt>This&nbsp;method&nbsp;is&nbsp;to&nbsp;return&nbsp;query&nbsp;for&nbsp;sqlite&nbsp;command<br>
+&nbsp;<br>
+Return:<br>
+string:&nbsp;the&nbsp;query&nbsp;command</tt></dd></dl>
 
-<dl><dt><a name="Query-getValue"><strong>getValue</strong></a>(self)</dt></dl>
+<dl><dt><a name="Query-getValue"><strong>getValue</strong></a>(self)</dt><dd><tt>This&nbsp;method&nbsp;is&nbsp;to&nbsp;return&nbsp;the&nbsp;value&nbsp;of&nbsp;self.<strong>value</strong><br>
+&nbsp;<br>
+Return:<br>
+string:&nbsp;the&nbsp;selected&nbsp;value</tt></dd></dl>
 
 <hr>
 Data descriptors defined here:<br>
@@ -3309,9 +3333,7 @@ Data descriptors defined here:<br>
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt><a href="#SpinnerOptions">SpinnerOptions</a>(**kwargs)<br>
 &nbsp;<br>
-Special&nbsp;button&nbsp;used&nbsp;in&nbsp;the&nbsp;:class:`Spinner`&nbsp;dropdown&nbsp;list.&nbsp;By&nbsp;default,<br>
-this&nbsp;is&nbsp;just&nbsp;a&nbsp;:class:`~kivy.uix.button.Button`&nbsp;with&nbsp;a&nbsp;size_hint_y&nbsp;of&nbsp;None<br>
-and&nbsp;a&nbsp;height&nbsp;of&nbsp;:meth:`48dp&nbsp;&lt;kivy.metrics.dp&gt;`.<br>&nbsp;</tt></td></tr>
+The&nbsp;class&nbsp;is&nbsp;written&nbsp;to&nbsp;for&nbsp;creating&nbsp;<a href="#SpinnerOptions">SpinnerOptions</a><br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="UI.html#SpinnerOptions">SpinnerOptions</a></dd>
@@ -3327,7 +3349,7 @@ and&nbsp;a&nbsp;height&nbsp;of&nbsp;:meth:`48dp&nbsp;&lt;kivy.metrics.dp&gt;`.<b
 </dl>
 <hr>
 Methods defined here:<br>
-<dl><dt><a name="SpinnerOptions-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+<dl><dt><a name="SpinnerOptions-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>This&nbsp;method&nbsp;initialize&nbsp;the&nbsp;instances&nbsp;of&nbsp;<a href="#SpinnerOptions">SpinnerOptions</a>.</tt></dd></dl>
 
 <hr>
 Data descriptors inherited from <a href="kivy.uix.button.html#Button">kivy.uix.button.Button</a>:<br>
@@ -6034,7 +6056,10 @@ Data descriptors inherited from <a href="kivy._event.html#ObjectWithUid">kivy._e
 <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
     
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-toBeDownloaded"><strong>toBeDownloaded</strong></a>(*argv)</dt></dl>
+<td width="100%"><dl><dt><a name="-toBeDownloaded"><strong>toBeDownloaded</strong></a>(*argv)</dt><dd><tt>This&nbsp;method&nbsp;is&nbsp;to&nbsp;trigger&nbsp;download&nbsp;of&nbsp;file&nbsp;based&nbsp;on&nbsp;the&nbsp;spinner&nbsp;option<br>
+&nbsp;<br>
+Parameters:<br>
+*argv(<a href="builtins.html#object">object</a>):&nbsp;accept&nbsp;the&nbsp;<a href="builtins.html#object">object</a>&nbsp;passed</tt></dd></dl>
 </td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#55aa55">
