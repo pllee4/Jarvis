@@ -32,19 +32,33 @@ Config.set('graphics', 'resizable', False)
 
 path_to_saved = "..\\..\\"
 
-"""
 
-This 
-
-"""
 class SpinnerOptions(SpinnerOption):
+    """
+    The class is written to for creating SpinnerOptions
+    """ 
 
     def __init__(self, **kwargs):
+        """
+        This method initialize the instances of SpinnerOptions.
+        """   
         super(SpinnerOptions, self).__init__(**kwargs)
         self.background_color = (0.1, 0.2, 50, 0.5)    # blue colour
             
 class CrowdSourcing(App):
-    def build(self):                                                                    
+    """
+    The class is written to for creating CrowdSourcing App
+    
+    Parameters:
+    App(Inheritance of class): To inherit the class of App from kivy.app
+    """ 
+    def build(self):  
+        """
+        This method builds the application with 4 spinners and one select button
+        
+        Returns:
+        object: the instance of ScrollView
+        """                                                                    
         layout = GridLayout(cols=5, spacing = 1,size_hint_y=None)               
         layout.bind(minimum_height=layout.setter('height'))      
               
@@ -90,9 +104,6 @@ class CrowdSourcing(App):
         
         self.firebase_inteface = fi.FirebaseInterface()
         
-        # self.message = Label(text = "Welcome", pos = (2900,900), font_size = '50sp', padding = (1000, 600))
-        # self.message.bind(text = self._showMessage)
-        
         layout.bind(minimum_height=layout.setter('height'))
         layout.add_widget(self.age_btn)                                      
         layout.add_widget(self.gender_btn)
@@ -101,7 +112,6 @@ class CrowdSourcing(App):
         layout.add_widget(self.voiceid_btn)
         layout.add_widget(self.select_btn)
         
-        # layout.add_widget(self.message)
     
         Window.bind(mouse_pos=self._mousePos)
 
@@ -111,7 +121,13 @@ class CrowdSourcing(App):
         root.add_widget(layout)
         return root
             
-    def _ageSelected(self, instance, value):                                       
+    def _ageSelected(self, instance, value):  
+        """
+        The class is written to for creating CrowdSourcing App
+        
+        Parameters:
+        App(Inheritance of class): To inherit the class of App from kivy.app
+        """                                      
         instance.text = value
         self.GetAge.insertValue(value)
         
