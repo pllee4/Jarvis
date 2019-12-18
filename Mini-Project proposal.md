@@ -12,30 +12,19 @@ Members:
 
 # Overview
 
-  In this project, we are trying to develop a server to collect voice of particular words
-like up, down, left, right, on, off, go, stop, numbers, etc. in mandarin. The database 
-created will arrange the voice based on several characteristics and criteria such as gender,
-age, and command.The voice that collected though this crowdsourcing server is to be used in
-training of Artificial Neural Network model for speech recognition which will be applied in
-various application such as voice user interfaces (wheel chair control for disabled people and
-embedded system voice control), speech-to-text processing and etc.
+  In this project, we are trying to develop a server to collect voice of particular words like up, down, left, right, on, off, go, stop, numbers, etc. in mandarin. The database created will arrange the voice based on several characteristics and criteria such as gender, age, and command.The voice that collected though this crowdsourcing server is to be used in training of Artificial Neural Network model for speech recognition which will be applied in various application such as voice user interfaces (wheel chair control for disabled people and embedded system voice control), speech-to-text processing and etc.
 
-  For this project, a Raspberry Pi will be use as local server to store all database of voice.
-The code for this server will be developed in Python Language. As for the mobile application 
-side, Android Studio will be use as IDE for code development. The code for this part will be 
-written in Java Language. The voice collected from mobile application will be send to server
-though MQTT protocol.
+  For this project, a local server will store all database of voice and its related information such as gender, age, native. The code for this server will be developed in Python Language. As for the mobile application side, Android Studio is used as IDE for code development. The code for this part will be written in Java Language. The voice collected from mobile application will be send to firebase storage as temporary storage. Local server will consistanly check for the availability of voice files in firebase storage and pull to local storage. The User Interface allow user to pull the needed voices with certain attribute from local storage.
 
 # System Architecture
 
-
 ![architecture](https://github.com/kaishengchoi/fluffy-palm-tree/blob/master/SystemArchitecture.PNG)
 
-[MQTT protocol is explained here](https://user-images.githubusercontent.com/42335542/67277334-28cbf500-f4f9-11e9-8b68-f364a8bbd676.png)
 
 # Class Diagram
 
-[Link for Class Diagram](https://github.com/pllee4/Jarvis/blob/master/Class%20diagram.md)
+![Class Diagram](https://github.com/kaishengchoi/fluffy-palm-tree/blob/master/softvoicecrowdsourcing.jpeg)
+
 
 # Domain Model
 
@@ -71,4 +60,4 @@ Some data in database:
 
 # Website where Django server is based
 
-  Since our project does not use website, we do not use Django, the borker website used for MQTT is soldier.mqtt.com
+
