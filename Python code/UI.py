@@ -47,7 +47,7 @@ class SpinnerOptions(SpinnerOption):
             
 class CrowdSourcing(App):
     """
-    The class is written to for creating CrowdSourcing App
+    The class is written to create CrowdSourcing App
     
     Parameters:
     App(Inheritance of class): To inherit the class of App from kivy.app
@@ -121,19 +121,47 @@ class CrowdSourcing(App):
         root.add_widget(layout)
         return root
             
-    def _ageSelected(self, instance, value):                                     
+    def _ageSelected(self, instance, value):  
+        """
+        The method is called when age_btn is clicked. It would update the value of button according to the selection
+        
+        Parameters:
+        instance (object): The instance of the button
+        value (str): The value that would to become the text of instance
+        """                                      
         instance.text = value
         self.GetAge.insertValue(value)
         
-    def _genderSelected(self, instance, value):                                    
+    def _genderSelected(self, instance, value):     
+        """
+        The method is called when gender_btn is clicked. It would update the value of button according to the selection
+        
+        Parameters:
+        instance (object): The instance of the button
+        value (str): The value that would to become the text of instance
+        """                                   
         instance.text = value
         self.GetGender.insertValue(value)
         
-    def _nativeSpeakerSelected(self, instance, value):                             
+    def _nativeSpeakerSelected(self, instance, value):  
+        """
+        The method is called when nativespeaker_btn is clicked. It would update the value of button according to the selection
+        
+        Parameters:
+        instance (object): The instance of the button
+        value (str): The value that would to become the text of instance
+        """                               
         instance.text = value
         self.GetNativeSpeaker.insertValue(value)
         
-    def _voiceIdSelected(self, instance, value):                                             
+    def _voiceIdSelected(self, instance, value):  
+        """
+        The method is called when voiceid_btn is clicked. It would update the value of button according to the selection
+        
+        Parameters:
+        instance (object): The instance of the button
+        value (str): The value that would to become the text of instance
+        """                                               
         instance.text = value
         c.execute('''SELECT DISTINCT VoiceId FROM VoiceTable WHERE ((Voice = ?))''', (value,))
         entry = c.fetchone()
@@ -142,7 +170,14 @@ class CrowdSourcing(App):
         except:
             self.GetVoice.insertValue("All Commands")
 
-    def _selected(self, instance):        
+    def _selected(self, instance):  
+        """
+        The method is called when select_btn is clicked. It would update the value of button according to the selection
+        
+        Parameters:
+        instance (object): The instance of the button
+        """    
+        
         AgeQuery = Query(self.GetAge, "DownloadLink", "CrowdSourcingMandarin", "All")
         GenderQuery = Query(self.GetGender, "DownloadLink", "CrowdSourcingMandarin", "All")
         NativeSpeakerQuery = Query(self.GetNativeSpeaker, "DownloadLink", "CrowdSourcingMandarin", "All")
@@ -150,6 +185,13 @@ class CrowdSourcing(App):
         toBeDownloaded(AgeQuery,GenderQuery, NativeSpeakerQuery, VoiceQuery)
         
     def _mousePos(self, window, pos):
+        """
+        The method is to read the position of mouse in window
+        
+        Parameters:
+        window (object): window of the application
+        pos(array): The value of position of mouse
+        """    
         if (pos[1] > 566 and pos[1] < 600):
             if (pos[0] > 1 and pos[0] < 156):
                 self.age_btn.background_color = (0.3, 0.3, 50, 1)
@@ -183,6 +225,12 @@ class CrowdSourcing(App):
             self.select_btn.background_color = (0.8, 0.9, 50, 1)
             
     def _updateDatabase(self, dt):
+        """
+        The method is to update the data in database according to new input from firebase
+        
+        Parameters:
+        dt (float): the interval time of updating the function 
+        """  
         db.dataFromFirebase = self.firebase_inteface.run()
         db.insertData(db.dataFromFirebase)
         db.dataFromFirebase = []
@@ -192,61 +240,136 @@ class CrowdSourcing(App):
         self.voiceid_btn.values = self.getVoice()   
 
     def getAge(self):
+        """
+        The method is to get the value for age from database that would be shown for options of Spinner
+        
+        Returns:
+        list: The value of age
+        """  
         column = "Age"
         c.execute("SELECT DISTINCT " + column + " FROM CrowdSourcingMandarin ORDER BY " + column + " ASC")
         self.GetAge.insertData(c.fetchall())
         return self.GetAge.value()
 
     def getGender(self):
+        """
+        The method is to get the value for gender from database that would be shown for options of Spinner
+        
+        Returns:
+        list: The value of gender
+        """  
         column = "Gender"
         c.execute("SELECT DISTINCT " + column + " FROM CrowdSourcingMandarin")
         self.GetGender.insertData(c.fetchall())
         return self.GetGender.value()
 
     def getNativeSpeaker(self):
+        """
+        The method is to get the value for nativeSpeaker from database that would be shown for options of Spinner
+        
+        Returns:
+        list: The value of nativeSpeaker
+        """  
         column = "NativeSpeaker"
         c.execute("SELECT DISTINCT " + column + " FROM CrowdSourcingMandarin")        
         self.GetNativeSpeaker.insertData(c.fetchall())
         return self.GetNativeSpeaker.value()
     
     def getVoice(self):
+        """
+        The method is to get the value for voice from database that would be shown for options of Spinner
+        
+        Returns:
+        list: The value of voice
+        """  
         column = "VoiceId"
         c.execute("SELECT DISTINCT Voice FROM VoiceTable WHERE VoiceId IN (SELECT DISTINCT " + column + " FROM CrowdSourcingMandarin)")        
         self.GetVoice.insertData(c.fetchall())
         return self.GetVoice.value()
 
 class Fetch():
-    
+    """
+    The class is written to fetch the information easily
+    """ 
     def __init__(self, column, extraData = None):
+        """
+        This method initialize the instances of Fetch.
+        
+        Parameters:
+        column(string): the name of the column
+        extraData(string): the extraData that is not from firebase
+        """   
         self.extraData = extraData
         self.column = column
         self.data = []
         self.valueSelected = ''
     
     def insertData(self, data):
+        """
+        This method insert data into the self.data
+        
+        Parameters:
+        data(list or string): the data selected from Spinner Options
+        """   
         self.data = data
     
     def value(self):
+        """
+        This method is to return the value for Spinner Options
+        
+        Return:
+        list: the list of data to be displayed for Spinner Options
+        """   
         returnData = []
         for value in self.data:
             returnData.append(str(value[0]))
         if self.extraData is not None:
             returnData.append(self.extraData)
+        print(returnData)
         return returnData
     
     def getColumn(self):
+        """
+        This method is to return the value of column
+        
+        Return:
+        string: the name of the column
+        """   
         return str(self.column)
 
     def getValue(self):
+        """
+        This method is to return the value of self.valueSelected
+        
+        Return:
+        string: the selected value
+        """   
         return str(self.valueSelected)
     
     def insertValue(self, value):
+        """
+        This method is to insert value into self.valueSelected
+        
+        Parameters:
+        value(string): the value that is selected
+        """   
         self.valueSelected = value
         
 
 class Query():
-    
+    """
+    The class is written to handle the query from databse
+    """ 
     def __init__(self, obj, select, table, condition):
+        """
+        This method initialize the instances of Fetch.
+        
+        Parameters:
+        obj(object): the object passed
+        select(string): the information to be selected from table
+        table(string): the name of table in database
+        condition(string): the condition whether is All or All Commands
+        """   
         self.column = obj.getColumn()
         self.value = obj.getValue()
         self.query = "SELECT " + select + " FROM " + table 
@@ -254,12 +377,30 @@ class Query():
             self.query += " WHERE " + self.column + " = '" + self.value + "'"
     
     def getQuery(self):
+        """
+        This method is to return query for sqlite command
+        
+        Return:
+        string: the query command
+        """  
         return self.query
    
     def getValue(self):
+        """
+        This method is to return the value of self.value
+        
+        Return:
+        string: the selected value
+        """  
         return self.value
 
 def toBeDownloaded(*argv):
+    """
+    This method is to trigger download of file based on the spinner option
+    
+    Parameters:
+    *argv(object): accept the object passed
+    """   
     selection_query = ''
     value = []
     header = ["Age", "Gender", "NativeSpeaker", "Command"]
@@ -284,8 +425,20 @@ def toBeDownloaded(*argv):
 	        shutil.copyfile(path[0], dest + "\\" + path[0].split("\\")[-1]) 
     
 class Alert(Popup):
-
+    """
+    The class is written to create alert when the input is invalid
+    
+    Parameters:
+    PopUp(Inheritance of class): To inherit the class of PopUp from kivy.uix.popup
+    """ 
     def __init__(self, title, text):
+        """
+        This method initialize the instances of Alert.
+        
+        Parameters:
+        title(string): title of popup to be shown
+        text(string): text of popup to be shown
+        """   
         super(Alert, self).__init__()
         content = AnchorLayout(anchor_x='center', anchor_y='bottom')
         content.add_widget(

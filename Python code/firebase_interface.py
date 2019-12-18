@@ -45,7 +45,3 @@ class FirebaseInterface ():
                 database.append((blob.metadata.get('Age'), blob.metadata.get('Gender'), blob.metadata.get('Native'), blob.metadata.get('Word'), path_to_save ))
 
         return database
-
-#if __name__ == "__main__":
-#    FB = FirebaseInterface()
-#    print(FB.run())
