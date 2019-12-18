@@ -56,8 +56,14 @@ Some data in database:
 
 # User interface
 
+The code for user interface for this project in written in python and Kivy open source python library. For more information on Kivy please refer to [Kivy's website](https://kivy.org/#home).
+
+The image below shows the developed UI for this project.
+
+![UI](https://github.com/kaishengchoi/fluffy-palm-tree/blob/master/UI.PNG)
 
 
 # Website where Django server is based
 
+This didn't use Django server, instead we are using SQLite as local database.
 
