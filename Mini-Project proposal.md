@@ -29,7 +29,7 @@ though MQTT protocol.
 # System Architecture
 
 
-![architecture](https://user-images.githubusercontent.com/42335542/67276010-5e231380-f4f6-11e9-811c-bdde78474ab4.png)
+![architecture](https://github.com/kaishengchoi/fluffy-palm-tree/blob/master/SystemArchitecture.PNG)
 
 [MQTT protocol is explained here](https://user-images.githubusercontent.com/42335542/67277334-28cbf500-f4f9-11e9-8b68-f364a8bbd676.png)
 
