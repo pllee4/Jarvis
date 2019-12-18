@@ -25,7 +25,9 @@ class FirebaseInterface ():
     def run(self):  
         """
         This method check for the available voices in firebase and download it to local storage.
-        Return the list of downloaded voices with its attributes.
+        
+        Returns:
+        list: the list of downloaded voices with its attributes such as age, gender and words.
         """
         blobs = self.bucket.list_blobs()
 
