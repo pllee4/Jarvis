@@ -46,9 +46,10 @@ Members:
 
 Database structure: 
 
-![final database1](https://user-images.githubusercontent.com/42335542/71088923-9f742e80-21da-11ea-9596-bbaded0956c5.png)
+![final database1](https://user-images.githubusercontent.com/42335542/71089143-2aedbf80-21db-11ea-8573-325c0e9bfadc.png)
 
 Some data in VoiceTable:
+
 ![final database3](https://user-images.githubusercontent.com/42335542/71089023-e5c98d80-21da-11ea-84ca-46f32dc16ac2.png)
 
 Some data in CrowdSourcingMandarin:
