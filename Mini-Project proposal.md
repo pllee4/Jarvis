@@ -46,7 +46,7 @@ Members:
 
 Database structure: 
 
-<img src="https://user-images.githubusercontent.com/42335542/71089268-6e482e00-21db-11ea-9230-ffc4280afe4d.png" height="148">
+<img src="https://user-images.githubusercontent.com/42335542/71089268-6e482e00-21db-11ea-9230-ffc4280afe4d.png" height="648">
 
 Some data in VoiceTable:
 
