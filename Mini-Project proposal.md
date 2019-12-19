@@ -23,7 +23,7 @@ Members:
 
 # Class Diagram
 
-![Class Diagram](https://github.com/kaishengchoi/fluffy-palm-tree/blob/master/softvoicecrowdsourcing.jpeg)
+![Class Diagram](https://github.com/kaishengchoi/fluffy-palm-tree/blob/master/classdiagram.jpeg)
 
 
 # Domain Model
