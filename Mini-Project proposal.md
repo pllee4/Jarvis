@@ -28,7 +28,7 @@ Members:
 
 # Domain Model
 
-![Domain model](https://user-images.githubusercontent.com/42335542/67346755-5c973100-f572-11e9-8497-2935be5af4a4.jpg)
+![Domain model](https://github.com/kaishengchoi/fluffy-palm-tree/blob/master/Domain%20Object%20Modeling.jpeg)
 
 
 # Entity-relationship Diagram
