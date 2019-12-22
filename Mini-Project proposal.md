@@ -38,11 +38,11 @@ Members:
 
 # Database tables
 
-* There are two tables created in database namely CrowdSourcingMandarin and VoiceTable
-* VoiceTable consisted of VoiceId (Integer primary key) and Voice (text unique)
+* There are two tables created in database (CrowSourcingMandarin) namely CrowdSourcingMandarin and VoiceTable.
+* VoiceTable consisted of VoiceId (Integer primary key) and Voice (text unique).
 * CrowdSourcingMandarin consisted of ID (Integer primary key), Age (Integer), Gender (Text)
   , NativeSpeaker (Text), VoiceId (Integer), DownloadLink (Text) with Foreign key VoiceId References 
-  to VoiceId in VoiceTable
+  to VoiceId in VoiceTable.
 
 Database structure: 
 
